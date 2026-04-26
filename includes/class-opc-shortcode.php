@@ -156,7 +156,7 @@ class Asian_Post_Photo_Card_Shortcode
                         <img id="rpc-bg" src="<?php echo esc_url(RPC_ASSETS_URL . 'templates/' . $atts['template']); ?>" crossorigin="anonymous">
 
                         <div class="rpc-photo-container">
-                            <img decoding="async" id="rpc-photo" crossorigin="anonymous" style="top: 124.444px; left: 22.2222px; transform: scale(1); cursor: grab;">
+                            <img decoding="async" id="rpc-photo" crossorigin="anonymous" style="top: 276.717px; left: 22.2222px; transform: scale(1); cursor: grab;">
                         </div>
 
                         <div id="rpc-title-area" class="rpc-title-area"></div>

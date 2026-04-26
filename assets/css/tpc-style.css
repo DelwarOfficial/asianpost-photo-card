@@ -494,12 +494,12 @@
 }
 
 #rpc-photo {
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     display: block;
     position: absolute;
-    top: 124.444px;
+    top: 276.717px;
     left: 22.2222px;
     transform-origin: center center;
     cursor: grab;

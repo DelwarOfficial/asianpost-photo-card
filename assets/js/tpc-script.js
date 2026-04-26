@@ -32,7 +32,7 @@
             this.$generateBtn = $('#rpc-generate-btn');
             this.$copyBtn = $('#rpc-copy');
             this.$downloadBtn = $('#rpc-download');
-            this.$resetBtn = $('#rpc-reset');
+            this.$resetBtn = $('#rpc-reset-btn');
             this.$message = $('#rpc-message');
             this.$spinner = $('.rpc-spinner');
 
@@ -184,7 +184,7 @@
                 let curLeft = parseFloat(this.$photo.css('left'));
                 let curTop = parseFloat(this.$photo.css('top'));
                 this.initialLeft = isNaN(curLeft) ? 22.2222 : curLeft;
-                this.initialTop = isNaN(curTop) ? 124.444 : curTop;
+                this.initialTop = isNaN(curTop) ? 276.717 : curTop;
                 this.$photo.css('cursor', 'grabbing');
             } else if (type === 'qr') {
                 const pos = this.$qr.position();
@@ -275,7 +275,7 @@
 
             // Reset Image Position & Zoom on new image load
             this.$photo.css({
-                top: '124.444px',
+                top: '276.717px',
                 left: '22.2222px',
                 transform: 'scale(1)'
             });
@@ -619,8 +619,8 @@
 
                     if ($clonedPhoto.length && $clonedContainer.length) {
                         const img = $clonedPhoto[0];
-                        const cw = $clonedContainer.width();
-                        const ch = $clonedContainer.height();
+                        const cw = $clonedPhoto.width() || 1080;
+                        const ch = $clonedPhoto.height() || 607.5;
                         const iw = img.naturalWidth;
                         const ih = img.naturalHeight;
 
