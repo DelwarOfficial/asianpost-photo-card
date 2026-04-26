@@ -1,0 +1,642 @@
+/* -----------------------------------------------------------
+   1. Local Fonts Setup
+----------------------------------------------------------- */
+@font-face {
+    font-family: 'RTVEnglish';
+    src: url('../fonts/GandhiSerif-Bold.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'RTVBangla';
+    src: url('../fonts/TiroBangla-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* -----------------------------------------------------------
+   2. Base & Layout Elements
+----------------------------------------------------------- */
+:root {
+    --rpc-primary: #5a67d8;
+    --rpc-primary-hover: #4c51bf;
+    --rpc-success: #10b981;
+    --rpc-success-hover: #059669;
+    --rpc-danger: #ef4444;
+    --rpc-danger-hover: #dc2626;
+    --rpc-dark: #1f2937;
+    --rpc-dark-hover: #111827;
+    --rpc-gray-50: #f9fafb;
+    --rpc-gray-100: #f3f4f6;
+    --rpc-gray-200: #e5e7eb;
+    --rpc-gray-300: #d1d5db;
+    --rpc-gray-700: #374151;
+    --rpc-text: #111827;
+    --rpc-bg: #ffffff;
+    --rpc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --rpc-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --rpc-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --rpc-radius: 8px;
+}
+
+.rpc-wrapper {
+    max-width: 1280px;
+    margin: 32px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    gap: 32px;
+    flex-wrap: nowrap;
+    color: var(--rpc-text);
+}
+
+.rpc-controls {
+    width: 440px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* -----------------------------------------------------------
+   3. SaaS Form Panels
+----------------------------------------------------------- */
+.rpc-section {
+    background: var(--rpc-bg);
+    border: 1px solid var(--rpc-gray-200);
+    border-radius: var(--rpc-radius);
+    box-shadow: var(--rpc-shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.rpc-section-title {
+    margin: 0;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--rpc-gray-700);
+    background: var(--rpc-gray-50);
+    border-bottom: 1px solid var(--rpc-gray-200);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rpc-section-title::after {
+    content: "▼";
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+.rpc-section.is-closed .rpc-section-title::after {
+    transform: rotate(-90deg);
+}
+
+.rpc-section-content {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.rpc-section.is-closed .rpc-section-content {
+    display: none;
+}
+
+.rpc-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rpc-form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--rpc-gray-700);
+    display: block;
+}
+
+.rpc-input,
+.rpc-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--rpc-gray-300);
+    border-radius: var(--rpc-radius);
+    font-size: 14px;
+    color: var(--rpc-text);
+    background-color: var(--rpc-bg);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    box-shadow: var(--rpc-shadow-sm);
+}
+
+.rpc-input:focus,
+.rpc-select:focus {
+    outline: none;
+    border-color: var(--rpc-primary);
+    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+}
+
+.rpc-helper-text {
+    font-size: 12px;
+    color: var(--rpc-gray-700);
+    margin-top: 4px;
+}
+
+/* Custom File Input */
+.rpc-file-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.rpc-file-input-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 14px;
+    background: var(--rpc-gray-50);
+    border: 1px dashed var(--rpc-gray-300);
+    border-radius: var(--rpc-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--rpc-gray-700);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.rpc-file-input-custom:hover {
+    background: #ebf4ff;
+    border-color: var(--rpc-primary);
+    color: var(--rpc-primary);
+}
+
+/* Range Slider */
+.rpc-range-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.rpc-range-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--rpc-gray-200);
+    border-radius: 3px;
+    outline: none;
+    flex-grow: 1;
+}
+
+.rpc-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--rpc-primary);
+    cursor: pointer;
+    box-shadow: var(--rpc-shadow-sm);
+    transition: transform 0.1s;
+}
+
+.rpc-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.rpc-range-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rpc-gray-700);
+    min-width: 40px;
+    text-align: right;
+}
+
+/* -----------------------------------------------------------
+   4. Actions & Toasts
+----------------------------------------------------------- */
+.rpc-actions-container {
+    position: sticky;
+    bottom: 24px;
+    background: var(--rpc-bg);
+    padding: 20px;
+    border-radius: var(--rpc-radius);
+    box-shadow: var(--rpc-shadow-lg);
+    border: 1px solid var(--rpc-gray-200);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 50;
+}
+
+.rpc-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 24px;
+    border: none;
+    border-radius: var(--rpc-radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.rpc-primary {
+    background: var(--rpc-primary);
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(90, 103, 216, 0.25);
+}
+
+.rpc-primary:hover:not(:disabled) {
+    background: var(--rpc-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px rgba(90, 103, 216, 0.3);
+}
+
+.rpc-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.rpc-secondary-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.rpc-secondary-actions .rpc-button {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.rpc-success {
+    background: var(--rpc-success);
+    color: #fff;
+}
+
+.rpc-success:hover {
+    background: var(--rpc-success-hover);
+}
+
+.rpc-outline {
+    background: transparent;
+    border: 1px solid var(--rpc-gray-300);
+    color: var(--rpc-gray-700);
+}
+
+.rpc-outline:hover {
+    background: var(--rpc-gray-50);
+    color: var(--rpc-text);
+}
+
+.rpc-dark {
+    background: var(--rpc-dark);
+    color: #fff;
+}
+
+.rpc-dark:hover {
+    background: var(--rpc-dark-hover);
+}
+
+.rpc-toast-message {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    padding: 16px 24px;
+    border-radius: var(--rpc-radius);
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: var(--rpc-shadow-lg);
+    z-index: 9999;
+    display: none;
+    animation: rpcSlideUp 0.3s ease forwards;
+}
+
+.rpc-toast-message.rpc-success {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    border-left: 4px solid var(--rpc-success);
+}
+
+.rpc-toast-message.rpc-error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    border-left: 4px solid var(--rpc-danger);
+}
+
+@keyframes rpcSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rpc-spin {
+    animation: rpcSpin 1s linear infinite;
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes rpcSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rpc-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--rpc-gray-700);
+    margin-top: auto;
+}
+
+.rpc-footer a {
+    color: var(--rpc-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* -----------------------------------------------------------
+   5. Preview Container
+----------------------------------------------------------- */
+.rpc-preview-pane {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.rpc-preview-header {
+    margin-bottom: 16px;
+    padding-left: 8px;
+}
+
+.rpc-preview-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--rpc-text);
+}
+
+.rpc-preview-container-box {
+    background: var(--rpc-gray-50);
+    border: 1px solid var(--rpc-gray-200);
+    border-radius: var(--rpc-radius);
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.rpc-preview-wrapper {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    box-shadow: var(--rpc-shadow-lg);
+    background-color: #fff;
+    transform-origin: top left;
+    margin: 0 auto;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: width 0.1s ease, height 0.1s ease;
+}
+
+.rpc-preview-wrapper.fade-in {
+    animation: rpcFadeIn 0.5s ease;
+}
+
+@keyframes rpcFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* -----------------------------------------------------------
+   6. INNER CARD (DO NOT MODIFY POSITIONS)
+----------------------------------------------------------- */
+.rpc-card {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    background: #fff;
+    transform-origin: top left;
+}
+
+#rpc-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.rpc-date-pill {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 70px;
+    left: 675px;
+    width: 500px;
+    text-align: center;
+    font-size: 34px;
+    color: #ffffff;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    background: transparent;
+}
+
+.rpc-photo-container {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 1px;
+    width: 1080px;
+    height: 833px;
+    background: transparent;
+}
+
+#rpc-photo {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 124.444px;
+    left: 22.2222px;
+    transform-origin: center center;
+    cursor: grab;
+}
+
+#rpc-photo:active {
+    cursor: grabbing;
+}
+
+.rpc-title-area {
+    position: absolute;
+    z-index: 10;
+    top: 950px;
+    left: 20px;
+    width: 1040px;
+    text-align: center;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.rpc-title-line {
+    display: inline;
+    color: #ffffff;
+    font-size: 75px;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.rpc-highlight {
+    color: #cd9638;
+    font-weight: 700;
+}
+
+.rpc-font-bn .rpc-date-pill,
+.rpc-font-bn .rpc-title-line {
+    font-family: 'RTVBangla', 'Noto Serif Bengali', serif;
+}
+
+.rpc-font-en .rpc-date-pill,
+.rpc-font-en .rpc-title-line {
+    font-family: 'RTVEnglish', 'Gandhi Serif', serif;
+}
+
+.rpc-qr {
+    display: none;
+    position: absolute;
+    z-index: 12;
+    inset: 1186.58px auto auto 48.6886px;
+    width: 120px;
+    height: 120px;
+    padding: 7px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.rpc-qr canvas,
+.rpc-qr img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.rpc-draggable {
+    cursor: grab;
+    user-select: none;
+    border: 1px dashed transparent;
+    transition: all 0.2s;
+}
+
+.rpc-draggable:hover {
+    border: 1px dashed rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rpc-draggable:active {
+    cursor: grabbing;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* -----------------------------------------------------------
+   7. Mobile Responsive
+----------------------------------------------------------- */
+@media (max-width: 992px) {
+    .rpc-wrapper {
+        flex-direction: column;
+        padding: 0 16px;
+        margin: 16px auto 100px auto;
+    }
+
+    .rpc-controls {
+        width: 100%;
+        order: 2;
+    }
+
+    .rpc-preview-pane {
+        width: 100%;
+        order: 1;
+    }
+
+    .rpc-preview-container-box {
+        padding: 16px;
+        min-height: auto;
+    }
+
+    .rpc-actions-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        border-top: 1px solid var(--rpc-gray-200);
+        margin: 0;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .rpc-secondary-actions {
+        justify-content: space-between;
+    }
+
+    .rpc-button {
+        padding: 16px;
+    }
+
+    .rpc-toast-message {
+        bottom: 120px;
+        right: 16px;
+        left: 16px;
+        text-align: center;
+    }
+}
