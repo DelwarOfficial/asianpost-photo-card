@@ -37,6 +37,10 @@ class Asian_Post_Photo_Card_Shortcode
                             <label><?php esc_html_e('Article URL', 'rtv-photo-card'); ?></label>
                             <input id="rpc-url" type="url" class="rpc-input" placeholder="Paste URL here..." />
                         </div>
+                        <div class="rpc-form-group rpc-checkbox-group" style="display: flex; align-items: center; gap: 8px; margin-top: 15px;">
+                            <input type="checkbox" id="rpc-toggle-qr" class="rpc-checkbox">
+                            <label for="rpc-toggle-qr" style="margin: 0; cursor: pointer;"><?php esc_html_e('Show QR Code', 'rtv-photo-card'); ?></label>
+                        </div>
                     </div>
                 </div>
 
@@ -105,6 +109,10 @@ class Asian_Post_Photo_Card_Shortcode
                             <small class="rpc-helper-text">
                                 Tip: Use <b>*asterisks*</b> to highlight specific words. Example: <code>This is *important* news</code>
                             </small>
+                            <div class="rpc-checkbox-group" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                                <input type="checkbox" id="rpc-toggle-highlight" class="rpc-checkbox">
+                                <label for="rpc-toggle-highlight" style="margin: 0; cursor: pointer;"><?php esc_html_e('Enable Highlight', 'rtv-photo-card'); ?></label>
+                            </div>
                         </div>
 
                         <div class="rpc-form-group">

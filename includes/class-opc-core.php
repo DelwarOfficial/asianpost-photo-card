@@ -82,7 +82,7 @@ class Asian_Post_Photo_Card_Core
 
     public function load_textdomain()
     {
-        load_plugin_textdomain('rtv-photo-card', false, dirname(plugin_basename(RPC_PLUGIN_FILE)) . '/languages');
+        load_plugin_textdomain('rtv-photo-card', false, dirname(plugin_basename((string) RPC_PLUGIN_FILE)) . '/languages');
     }
 
     public function enqueue_assets()

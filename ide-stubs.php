@@ -10,11 +10,17 @@
 die('This file is for IDE indexing only.');
 
 // Plugin Constants
+/** @const string */
 define('RPC_VERSION', '5.3.0');
-define('RPC_PLUGIN_FILE', __FILE__);
-define('RPC_URL', '');
-define('RPC_PATH', '');
-define('RPC_ASSETS_URL', '');
+/** @const string */
+define('RPC_PLUGIN_FILE', 'asian-post-photo-card.php');
+/** @const string */
+define('RPC_URL', 'http://localhost');
+/** @const string */
+define('RPC_PATH', '/var/www');
+/** @const string */
+define('RPC_ASSETS_URL', 'http://localhost/assets');
+/** @const int */
 define('HOUR_IN_SECONDS', 3600);
 
 // Utility

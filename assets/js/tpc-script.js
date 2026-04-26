@@ -28,6 +28,7 @@
 
             this.$templateSelect = $('#rpc-template');
             this.$fontSelect = $('#rpc-font-family'); // New Font Selector
+            this.$qrToggle = $('#rpc-toggle-qr'); // New QR Toggle
             this.$generateBtn = $('#rpc-generate-btn');
             this.$copyBtn = $('#rpc-copy');
             this.$downloadBtn = $('#rpc-download');
@@ -37,6 +38,7 @@
 
             // Custom Title & Font Size
             this.$titleInput = $('#rpc-custom-title');
+            this.$highlightToggle = $('#rpc-toggle-highlight'); // New Highlight Toggle
             this.$fontSizeInput = $('#rpc-font-size');
             this.$fontSizeRange = $('#rpc-font-size-range');
 
@@ -99,6 +101,11 @@
             // LIVE TITLE EDITING EVENTS
             this.$titleInput.on('input', (e) => this.renderStyledTitle($(e.target).val()));
 
+            // HIGHLIGHT TOGGLE
+            this.$highlightToggle.on('change', () => {
+                this.renderStyledTitle(this.$titleInput.val());
+            });
+
             // FONT SIZE - DUAL BINDING
             this.$fontSizeInput.on('input', () => {
                 const val = this.$fontSizeInput.val();
@@ -115,6 +122,15 @@
             });
 
             $(window).on('resize', () => this.resizePreview());
+
+            // QR Toggle
+            this.$qrToggle.on('change', () => {
+                if (this.currentData) {
+                    this.renderQR(this.currentData);
+                } else if (this.$urlInput.val().trim()) {
+                    this.renderQR({ qr_url: this.$urlInput.val().trim() });
+                }
+            });
 
             // DRAG & DROP INIT
             this.initDraggable();
@@ -371,7 +387,7 @@
             // Clear previous QR
             this.$qr.empty();
 
-            if (!url) {
+            if (!url || !this.$qrToggle.is(':checked')) {
                 this.$qr.hide();
                 return;
             }
@@ -432,18 +448,23 @@
 
             let html = '';
 
-            // --- 1. ASTERISK MODE (*highlight*) ---
-            if (title.includes('*')) {
-                // Handle newlines
-                let formatted = title.replace(/\n/g, '<br/>');
-                // Regex to replace *text* with <span class="rpc-highlight">text</span>
-                // Uses non-greedy match (.*?)
-                html = formatted.replace(/\*(.*?)\*/g, '<span class="rpc-highlight">$1</span>');
-
+            // --- HIGHLIGHT TOGGLE CHECK ---
+            if (!this.$highlightToggle.is(':checked')) {
+                // If disabled, just render plain text with line breaks (literal asterisks)
+                html = title.replace(/\n/g, '<br/>');
             } else {
-                // --- 2. AUTO MODE (Fallback) ---
-                // Clean and split
-                let formattedTitle = title.replace(/\n/g, " ###BR### ");
+                // --- 1. ASTERISK MODE (*highlight*) ---
+                if (title.includes('*')) {
+                    // Handle newlines
+                    let formatted = title.replace(/\n/g, '<br/>');
+                    // Regex to replace *text* with <span class="rpc-highlight">text</span>
+                    // Uses non-greedy match (.*?)
+                    html = formatted.replace(/\*(.*?)\*/g, '<span class="rpc-highlight">$1</span>');
+
+                } else {
+                    // --- 2. AUTO MODE (Fallback) ---
+                    // Clean and split
+                    let formattedTitle = title.replace(/\n/g, " ###BR### ");
                 const tokens = formattedTitle.split(/\s+/);
 
                 const realWords = tokens.filter(t => t !== '###BR###' && t.trim() !== '');
@@ -466,8 +487,9 @@
                     }
                 });
             }
+        }
 
-            // Get size from input
+        // Get size from input
             let size = this.$fontSizeInput.val();
             if (!size) size = 75;
 
@@ -741,6 +763,8 @@
             this.$fontSizeRange.val(75);
             this.$fontSelect.val('TiroBangla-Regular.woff2'); // Reset font select
             this.$customImageInput.val(''); // Reset file input
+            this.$qrToggle.prop('checked', false); // Reset toggle
+            this.$highlightToggle.prop('checked', false); // Reset highlight toggle
             this.$containers.hide();
             this.$titleArea.empty();
 
