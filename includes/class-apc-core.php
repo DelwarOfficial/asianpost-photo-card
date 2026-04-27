@@ -22,7 +22,6 @@ class Asian_Post_Photo_Card_Core
 
     private function init_hooks()
     {
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
         add_action('init', array($this, 'load_textdomain'));
         add_action('admin_notices', array($this, 'display_activation_notice'));
         register_activation_hook(APC_PLUGIN_FILE, array($this, 'activate_plugin'));
@@ -87,11 +86,6 @@ class Asian_Post_Photo_Card_Core
 
     public function enqueue_assets()
     {
-        global $post;
-        if (!is_a($post, 'WP_Post') || !has_shortcode($post->post_content, 'photo_card')) {
-            return;
-        }
-
         wp_enqueue_style('apc-style', APC_ASSETS_URL . 'css/apc-style.css', array(), APC_VERSION);
         wp_enqueue_style('apc-google-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap', array(), null);
 

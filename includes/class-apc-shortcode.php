@@ -12,6 +12,8 @@ class Asian_Post_Photo_Card_Shortcode
 
     public static function render_shortcode($atts = array())
     {
+        // Enqueue necessary CSS and JS only when this shortcode is actually rendered
+        Asian_Post_Photo_Card_Core::get_instance()->enqueue_assets();
         $default_template = 'Default-Template-1080x1350.png';
         $files = glob(APC_PATH . 'assets/templates/*.{png,jpg,jpeg}', GLOB_BRACE);
         if (!empty($files)) {
