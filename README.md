@@ -35,7 +35,7 @@ Activate the plugin via the WordPress administration dashboard.
 
 The plugin will automatically create an isolated frontend render page titled `Asian Post Photo Card`. Alternatively, administrators can render the tool manually by using the following shortcode:
 
-`[photo_card template="Default-Template-1080x1350.png"]`
+`[photo_card]`
 
 ## Dependencies
 
