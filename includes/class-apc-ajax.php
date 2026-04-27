@@ -7,40 +7,39 @@ class Asian_Post_Photo_Card_Ajax
 {
     public static function init()
     {
-        add_action('wp_ajax_rpc_get_external_post', array(__CLASS__, 'ajax_get_external_post'));
-        add_action('wp_ajax_nopriv_rpc_get_external_post', array(__CLASS__, 'ajax_get_external_post'));
+        add_action('wp_ajax_APC_get_external_post', array(__CLASS__, 'ajax_get_external_post'));
     }
 
     public static function ajax_get_external_post()
     {
         // 1. Verify Nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'rpc_ajax_nonce')) {
-            wp_send_json_error(array('message' => __('Security check failed. Please refresh the page.', 'rtv-photo-card')));
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'APC_ajax_nonce')) {
+            wp_send_json_error(array('message' => __('Security check failed. Please refresh the page.', 'asian-post-photo-card')));
             exit;
         }
 
         // 2. Privilege validation: Ensure only allowed users (e.g. contributors+) can fetch data
         if (!current_user_can('edit_posts')) {
-            wp_send_json_error(array('message' => __('You do not have permission to perform this action.', 'rtv-photo-card')));
+            wp_send_json_error(array('message' => __('You do not have permission to perform this action.', 'asian-post-photo-card')));
             exit;
         }
 
         $url = isset($_POST['post_url']) ? esc_url_raw(wp_unslash($_POST['post_url'])) : '';
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            wp_send_json_error(array('message' => __('Please provide a valid URL.', 'rtv-photo-card')));
+            wp_send_json_error(array('message' => __('Please provide a valid URL.', 'asian-post-photo-card')));
         }
 
-        $cache_key = 'rpc_cache_' . md5($url);
+        $cache_key = 'APC_cache_' . md5($url);
         $cached_data = get_transient($cache_key);
         if (false !== $cached_data) {
             wp_send_json_success($cached_data);
         }
 
-        $response = wp_safe_remote_get($url, array('timeout' => 30, 'sslverify' => false, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'));
-        if (is_wp_error($response)) wp_send_json_error(array('message' => __('Failed to connect to the provided URL.', 'rtv-photo-card')));
+        $response = wp_safe_remote_get($url, array('timeout' => 30, 'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'));
+        if (is_wp_error($response)) wp_send_json_error(array('message' => __('Failed to connect to the provided URL.', 'asian-post-photo-card')));
 
         $html = wp_remote_retrieve_body($response);
-        if (empty($html)) wp_send_json_error(array('message' => __('Empty response from server.', 'rtv-photo-card')));
+        if (empty($html)) wp_send_json_error(array('message' => __('Empty response from server.', 'asian-post-photo-card')));
 
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
         $dom = new DOMDocument();
@@ -76,7 +75,7 @@ class Asian_Post_Photo_Card_Ajax
         // Base64 Image
         $base64_image = '';
         if (!empty($image_url)) {
-            $img_response = wp_safe_remote_get($image_url, array('sslverify' => false, 'timeout' => 15));
+            $img_response = wp_safe_remote_get($image_url, array('timeout' => 15));
             if (!is_wp_error($img_response) && wp_remote_retrieve_response_code($img_response) == 200) {
                 $type = wp_remote_retrieve_header($img_response, 'content-type');
                 if (empty($type)) $type = 'image/jpeg';

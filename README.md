@@ -14,10 +14,10 @@ A WordPress plugin designed to generate custom social media and news photo cards
 
 This plugin follows standard WordPress modular architecture:
 
-- `/includes/class-opc-core.php`: Initializes the plugin, handling data localization and asset enqueuing.
-- `/includes/class-opc-ajax.php`: Processes secure AJAX requests and manages the DOM parsing logic for web scraping.
-- `/includes/class-opc-shortcode.php`: Manages the frontend component rendering and application state.
-- `/includes/class-opc-utils.php`: Provides centralized utility functions for timestamp conversion, Schema.org URL extraction, and string manipulation.
+- `/includes/class-apc-core.php`: Initializes the plugin, handling data localization and asset enqueuing.
+- `/includes/class-apc-ajax.php`: Processes secure AJAX requests and manages the DOM parsing logic for web scraping.
+- `/includes/class-apc-shortcode.php`: Manages the frontend component rendering and application state.
+- `/includes/class-apc-utils.php`: Provides centralized utility functions for timestamp conversion, Schema.org URL extraction, and string manipulation.
 
 ## Security
 

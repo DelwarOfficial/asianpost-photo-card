@@ -1,7 +1,7 @@
 (function ($) {
     'use strict';
 
-    class RTVPhotoCard {
+    class AsianPostPhotoCard {
         constructor() {
             this.currentScale = 1;
             this.isDragging = false;
@@ -22,50 +22,50 @@
         }
 
         initElements() {
-            this.$urlInput = $('#rpc-url');
-            this.$customImageInput = $('#rpc-custom-image-input'); // New
-            this.$imageScaleInput = $('#rpc-image-scale'); // New Zoom Slider
+            this.$urlInput = $('#apc-url');
+            this.$customImageInput = $('#apc-custom-image-input'); // New
+            this.$imageScaleInput = $('#apc-image-scale'); // New Zoom Slider
 
-            this.$templateSelect = $('#rpc-template');
-            this.$fontSelect = $('#rpc-font-family'); // New Font Selector
-            this.$qrToggle = $('#rpc-toggle-qr'); // New QR Toggle
-            this.$generateBtn = $('#rpc-generate-btn');
-            this.$copyBtn = $('#rpc-copy');
-            this.$downloadBtn = $('#rpc-download');
-            this.$resetBtn = $('#rpc-reset-btn');
-            this.$message = $('#rpc-message');
-            this.$spinner = $('.rpc-spinner');
+            this.$templateSelect = $('#apc-template');
+            this.$fontSelect = $('#apc-font-family'); // New Font Selector
+            this.$qrToggle = $('#apc-toggle-qr'); // New QR Toggle
+            this.$generateBtn = $('#apc-generate-btn');
+            this.$copyBtn = $('#apc-copy');
+            this.$downloadBtn = $('#apc-download');
+            this.$resetBtn = $('#apc-reset-btn');
+            this.$message = $('#apc-message');
+            this.$spinner = $('.apc-spinner');
 
             // Custom Title & Font Size
-            this.$titleInput = $('#rpc-custom-title');
-            this.$highlightToggle = $('#rpc-toggle-highlight'); // New Highlight Toggle
-            this.$fontSizeInput = $('#rpc-font-size');
-            this.$fontSizeRange = $('#rpc-font-size-range');
+            this.$titleInput = $('#apc-custom-title');
+            this.$highlightToggle = $('#apc-toggle-highlight'); // New Highlight Toggle
+            this.$fontSizeInput = $('#apc-font-size');
+            this.$fontSizeRange = $('#apc-font-size-range');
 
-            this.$previewContainer = $('.rpc-preview-container-box');
-            this.$wrapper = $('.rpc-preview-wrapper');
-            this.$card = $('#rpc-card');
-            this.$bg = $('#rpc-bg');
-            this.$photo = $('#rpc-photo');
-            this.$dateText = $('.rpc-date-text');
-            this.$titleArea = $('.rpc-title-area');
+            this.$previewContainer = $('.apc-preview-container-box');
+            this.$wrapper = $('.apc-preview-wrapper');
+            this.$card = $('#apc-card');
+            this.$bg = $('#apc-bg');
+            this.$photo = $('#apc-photo');
+            this.$dateText = $('.apc-date-text');
+            this.$titleArea = $('.apc-title-area');
 
-            this.$containers = $('.rpc-date-pill, .rpc-photo-container');
-            this.$photoContainer = $('.rpc-photo-container'); // Need this reference
-            this.$qr = $('.rpc-qr');
+            this.$containers = $('.apc-date-pill, .apc-photo-container');
+            this.$photoContainer = $('.apc-photo-container'); // Need this reference
+            this.$qr = $('.apc-qr');
 
-            this.$zoomValText = $('#rpc-zoom-val');
-            this.$fontSizeValText = $('#rpc-font-size-val');
-            this.$fileNameText = $('#rpc-file-name');
-            this.$fadeTarget = $('#rpc-preview-wrapper-fade');
-            this.$sections = $('.rpc-section-title');
+            this.$zoomValText = $('#apc-zoom-val');
+            this.$fontSizeValText = $('#apc-font-size-val');
+            this.$fileNameText = $('#apc-file-name');
+            this.$fadeTarget = $('#apc-card');
+            this.$sections = $('.apc-section-title');
             this.currentData = null;
         }
 
         initEvents() {
             // Accordion Toggle
             this.$sections.on('click', function () {
-                $(this).closest('.rpc-section').toggleClass('is-closed');
+                $(this).closest('.apc-section').toggleClass('is-closed');
             });
 
             // Require URL for Generate
@@ -82,7 +82,7 @@
             this.$templateSelect.on('change', (e) => {
                 const val = $(e.target).val();
                 if (val) {
-                    const src = rpcData.templatesUrl + val;
+                    const src = apcData.templatesUrl + val;
                     this.$bg.attr('src', src);
                 }
             });
@@ -138,7 +138,7 @@
 
         initDraggable() {
             // Title Drag
-            this.$titleArea.addClass('rpc-draggable');
+            this.$titleArea.addClass('apc-draggable');
             this.$titleArea.on('mousedown touchstart', (e) => this.startDrag(e, 'title'));
 
             // Photo Drag
@@ -146,7 +146,7 @@
             this.$photo.on('mousedown touchstart', (e) => this.startDrag(e, 'photo'));
 
             // QR Drag
-            this.$qr.addClass('rpc-draggable');
+            this.$qr.addClass('apc-draggable');
             this.$qr.on('mousedown touchstart', (e) => this.startDrag(e, 'qr'));
 
             // Global Move/End
@@ -288,16 +288,16 @@
 
             // Basic XSS Sanitize (though jQuery .val() is generally safe from DOM injection, we validat logic)
             if (!url) {
-                this.showMessage(rpcData.strings.invalidUrl, 'error');
+                this.showMessage(apcData.strings.invalidUrl, 'error');
                 return;
             }
 
             this.toggleLoading(true);
             this.$message.hide();
 
-            $.post(rpcData.ajaxurl, {
-                action: 'rpc_get_external_post',
-                nonce: rpcData.nonce,
+            $.post(apcData.ajaxurl, {
+                action: 'APC_get_external_post',
+                nonce: apcData.nonce,
                 post_url: url
             }, (response) => {
                 this.toggleLoading(false);
@@ -342,8 +342,8 @@
                 this.$fadeTarget.addClass('fade-in');
             }
 
-            this.$card.removeClass('rpc-font-bn rpc-font-en');
-            const langClass = (data.language === 'bangla') ? 'rpc-font-bn' : 'rpc-font-en';
+            this.$card.removeClass('apc-font-bn apc-font-en');
+            const langClass = (data.language === 'bangla') ? 'apc-font-bn' : 'apc-font-en';
             this.$card.addClass(langClass);
 
             // Auto-update the font dropdown to match the detected article language
@@ -362,7 +362,7 @@
             // If I upload image, then click Generate, should it be overwritten? 
             // Usually Generate fetches new article -> new image.
 
-            const imgSrc = data.image ? data.image : rpcData.defaultImage;
+            const imgSrc = data.image ? data.image : apcData.defaultImage;
             // If we want to check if custom image is set... complicated without flags.
             // Simple behavior: Generate overwrites. User re-uploads if needed.
 
@@ -457,9 +457,9 @@
                 if (title.includes('*')) {
                     // Handle newlines
                     let formatted = title.replace(/\n/g, '<br/>');
-                    // Regex to replace *text* with <span class="rpc-highlight">text</span>
+                    // Regex to replace *text* with <span class="apc-highlight">text</span>
                     // Uses non-greedy match (.*?)
-                    html = formatted.replace(/\*(.*?)\*/g, '<span class="rpc-highlight">$1</span>');
+                    html = formatted.replace(/\*(.*?)\*/g, '<span class="apc-highlight">$1</span>');
 
                 } else {
                     // --- 2. AUTO MODE (Fallback) ---
@@ -479,7 +479,7 @@
                         html += '<br/>';
                     } else if (token.trim() !== '') {
                         if (total > 3 && wordIndex >= start && wordIndex <= end) {
-                            html += `<span class="rpc-highlight">${token}</span> `;
+                            html += `<span class="apc-highlight">${token}</span> `;
                         } else {
                             html += `${token} `;
                         }
@@ -498,20 +498,20 @@
             let fontName = selectedFontFile.split('.')[0];
 
             // Dynamically load font to support future extensibility
-            if ($(`#rpc-dynamic-font-${fontName}`).length === 0) {
-                let fontUrl = rpcData.fontsUrl + selectedFontFile;
+            if ($(`#apc-dynamic-font-${fontName}`).length === 0) {
+                let fontUrl = apcData.fontsUrl + selectedFontFile;
                 let css = `@font-face { font-family: '${fontName}'; src: url('${fontUrl}') format('woff2'); font-style: normal; font-display: swap; }`;
-                $('head').append(`<style id="rpc-dynamic-font-${fontName}">${css}</style>`);
+                $('head').append(`<style id="apc-dynamic-font-${fontName}">${css}</style>`);
             }
 
             let fontFamily = `'${fontName}', sans-serif`;
 
             // Apply font family globally to areas requiring text styling
             this.$dateText.css('font-family', fontFamily);
-            this.$card.find('.rpc-date-pill').css('font-family', fontFamily);
+            this.$card.find('.apc-date-pill').css('font-family', fontFamily);
 
             this.$titleArea.html(
-                `<div class="rpc-title-line" style="font-size:${size}px; line-height: 1.3; display:block; font-family:${fontFamily}">${html}</div>`
+                `<div class="apc-title-line" style="font-size:${size}px; line-height: 1.3; display:block; font-family:${fontFamily}">${html}</div>`
             );
         }
 
@@ -525,7 +525,7 @@
                 return;
             }
 
-            $btn.prop('disabled', true).text(rpcData.strings.copying);
+            $btn.prop('disabled', true).text(apcData.strings.copying);
 
             this.createTempCanvas((canvas, $container) => {
                 canvas.toBlob(blob => {
@@ -533,7 +533,7 @@
                     try {
                         const item = new ClipboardItem({ "image/png": blob });
                         navigator.clipboard.write([item]).then(() => {
-                            this.showMessage(rpcData.strings.copySuccess, 'success');
+                            this.showMessage(apcData.strings.copySuccess, 'success');
                             $btn.prop('disabled', false).text(originalText);
                             $container.remove();
                         }).catch(() => this.handleError($btn, originalText, $container));
@@ -566,14 +566,14 @@
         }
 
         handleError($btn, originalText, $container) {
-            this.showMessage(rpcData.strings.copyError, 'error');
+            this.showMessage(apcData.strings.copyError, 'error');
             $btn.prop('disabled', false).text(originalText);
             if ($container) $container.remove();
         }
 
         createTempCanvas(successCallback, errorCallback) {
             // Create hidden clone
-            const $captureContainer = $('<div>').attr('id', 'rpc-capture-container').css({
+            const $captureContainer = $('<div>').attr('id', 'apc-capture-container').css({
                 position: 'fixed',
                 left: '-9999px', // Safe off-screen
                 top: '0',
@@ -587,7 +587,7 @@
 
             // Fix QR in clone
             const originalQRImg = this.$qr.find('img');
-            const cloneQRContainer = $clonedCard.find('.rpc-qr');
+            const cloneQRContainer = $clonedCard.find('.apc-qr');
             if (originalQRImg.length > 0) {
                 cloneQRContainer.show().html(`<img src="${originalQRImg.attr('src')}" style="width:100%; height:100%; display:block;">`);
             }
@@ -614,8 +614,8 @@
                      * We manually compute the "covered" geometry including user zoom/drag, and apply explicit 
                      * pixel dimensions to the cloned image. This ensures WYSIWYG export at 1080x1350.
                      */
-                    const $clonedPhoto = $clonedCard.find('#rpc-photo');
-                    const $clonedContainer = $clonedCard.find('.rpc-photo-container');
+                    const $clonedPhoto = $clonedCard.find('#apc-photo');
+                    const $clonedContainer = $clonedCard.find('.apc-photo-container');
 
                     if ($clonedPhoto.length && $clonedContainer.length) {
                         const img = $clonedPhoto[0];
@@ -745,8 +745,8 @@
 
         showMessage(msg, type) {
             this.$message
-                .removeClass('rpc-success rpc-error')
-                .addClass('rpc-' + type)
+                .removeClass('apc-success apc-error')
+                .addClass('apc-' + type)
                 .text(msg)
                 .fadeIn(200);
 
@@ -782,6 +782,6 @@
         }
     }
 
-    $(document).ready(() => new RTVPhotoCard());
+    $(document).ready(() => new AsianPostPhotoCard());
 
 })(jQuery);

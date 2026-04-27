@@ -21,38 +21,38 @@
    2. Base & Layout Elements
 ----------------------------------------------------------- */
 :root {
-    --rpc-primary: #5a67d8;
-    --rpc-primary-hover: #4c51bf;
-    --rpc-success: #10b981;
-    --rpc-success-hover: #059669;
-    --rpc-danger: #ef4444;
-    --rpc-danger-hover: #dc2626;
-    --rpc-dark: #1f2937;
-    --rpc-dark-hover: #111827;
-    --rpc-gray-50: #f9fafb;
-    --rpc-gray-100: #f3f4f6;
-    --rpc-gray-200: #e5e7eb;
-    --rpc-gray-300: #d1d5db;
-    --rpc-gray-700: #374151;
-    --rpc-text: #111827;
-    --rpc-bg: #ffffff;
-    --rpc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --rpc-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --rpc-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --rpc-radius: 8px;
+    --apc-primary: #5a67d8;
+    --apc-primary-hover: #4c51bf;
+    --apc-success: #10b981;
+    --apc-success-hover: #059669;
+    --apc-danger: #ef4444;
+    --apc-danger-hover: #dc2626;
+    --apc-dark: #1f2937;
+    --apc-dark-hover: #111827;
+    --apc-gray-50: #f9fafb;
+    --apc-gray-100: #f3f4f6;
+    --apc-gray-200: #e5e7eb;
+    --apc-gray-300: #d1d5db;
+    --apc-gray-700: #374151;
+    --apc-text: #111827;
+    --apc-bg: #ffffff;
+    --apc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --apc-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --apc-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --apc-radius: 8px;
 }
 
-.rpc-wrapper {
+.apc-wrapper {
     max-width: 1280px;
     margin: 32px auto;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     gap: 32px;
     flex-wrap: nowrap;
-    color: var(--rpc-text);
+    color: var(--apc-text);
 }
 
-.rpc-controls {
+.apc-controls {
     width: 440px;
     flex-shrink: 0;
     display: flex;
@@ -63,42 +63,42 @@
 /* -----------------------------------------------------------
    3. SaaS Form Panels
 ----------------------------------------------------------- */
-.rpc-section {
-    background: var(--rpc-bg);
-    border: 1px solid var(--rpc-gray-200);
-    border-radius: var(--rpc-radius);
-    box-shadow: var(--rpc-shadow-sm);
+.apc-section {
+    background: var(--apc-bg);
+    border: 1px solid var(--apc-gray-200);
+    border-radius: var(--apc-radius);
+    box-shadow: var(--apc-shadow-sm);
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
-.rpc-section-title {
+.apc-section-title {
     margin: 0;
     padding: 16px 20px;
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--rpc-gray-700);
-    background: var(--rpc-gray-50);
-    border-bottom: 1px solid var(--rpc-gray-200);
+    color: var(--apc-gray-700);
+    background: var(--apc-gray-50);
+    border-bottom: 1px solid var(--apc-gray-200);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.rpc-section-title::after {
+.apc-section-title::after {
     content: "▼";
     font-size: 10px;
     transition: transform 0.3s ease;
 }
 
-.rpc-section.is-closed .rpc-section-title::after {
+.apc-section.is-closed .apc-section-title::after {
     transform: rotate(-90deg);
 }
 
-.rpc-section-content {
+.apc-section-content {
     padding: 24px 20px;
     display: flex;
     flex-direction: column;
@@ -106,116 +106,116 @@
     transition: all 0.3s ease;
 }
 
-.rpc-section.is-closed .rpc-section-content {
+.apc-section.is-closed .apc-section-content {
     display: none;
 }
 
-.rpc-form-group {
+.apc-form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.rpc-form-group label {
+.apc-form-group label {
     font-size: 13px;
     font-weight: 500;
-    color: var(--rpc-gray-700);
+    color: var(--apc-gray-700);
     display: block;
 }
 
-.rpc-input,
-.rpc-select {
+.apc-input,
+.apc-select {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid var(--rpc-gray-300);
-    border-radius: var(--rpc-radius);
+    border: 1px solid var(--apc-gray-300);
+    border-radius: var(--apc-radius);
     font-size: 14px;
-    color: var(--rpc-text);
-    background-color: var(--rpc-bg);
+    color: var(--apc-text);
+    background-color: var(--apc-bg);
     transition: all 0.2s ease;
     box-sizing: border-box;
-    box-shadow: var(--rpc-shadow-sm);
+    box-shadow: var(--apc-shadow-sm);
 }
 
-.rpc-input:focus,
-.rpc-select:focus {
+.apc-input:focus,
+.apc-select:focus {
     outline: none;
-    border-color: var(--rpc-primary);
+    border-color: var(--apc-primary);
     box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
 }
 
-.rpc-helper-text {
+.apc-helper-text {
     font-size: 12px;
-    color: var(--rpc-gray-700);
+    color: var(--apc-gray-700);
     margin-top: 4px;
 }
 
 /* Custom File Input */
-.rpc-file-input-wrapper {
+.apc-file-input-wrapper {
     position: relative;
     width: 100%;
 }
 
-.rpc-file-input-custom {
+.apc-file-input-custom {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: 16px 14px;
-    background: var(--rpc-gray-50);
-    border: 1px dashed var(--rpc-gray-300);
-    border-radius: var(--rpc-radius);
+    background: var(--apc-gray-50);
+    border: 1px dashed var(--apc-gray-300);
+    border-radius: var(--apc-radius);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    color: var(--rpc-gray-700);
+    color: var(--apc-gray-700);
     transition: all 0.2s ease;
     box-sizing: border-box;
 }
 
-.rpc-file-input-custom:hover {
+.apc-file-input-custom:hover {
     background: #ebf4ff;
-    border-color: var(--rpc-primary);
-    color: var(--rpc-primary);
+    border-color: var(--apc-primary);
+    color: var(--apc-primary);
 }
 
 /* Range Slider */
-.rpc-range-container {
+.apc-range-container {
     display: flex;
     align-items: center;
     gap: 12px;
     width: 100%;
 }
 
-.rpc-range-slider {
+.apc-range-slider {
     -webkit-appearance: none;
     width: 100%;
     height: 6px;
-    background: var(--rpc-gray-200);
+    background: var(--apc-gray-200);
     border-radius: 3px;
     outline: none;
     flex-grow: 1;
 }
 
-.rpc-range-slider::-webkit-slider-thumb {
+.apc-range-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--rpc-primary);
+    background: var(--apc-primary);
     cursor: pointer;
-    box-shadow: var(--rpc-shadow-sm);
+    box-shadow: var(--apc-shadow-sm);
     transition: transform 0.1s;
 }
 
-.rpc-range-slider::-webkit-slider-thumb:hover {
+.apc-range-slider::-webkit-slider-thumb:hover {
     transform: scale(1.15);
 }
 
-.rpc-range-val {
+.apc-range-val {
     font-size: 13px;
     font-weight: 600;
-    color: var(--rpc-gray-700);
+    color: var(--apc-gray-700);
     min-width: 40px;
     text-align: right;
 }
@@ -223,21 +223,21 @@
 /* -----------------------------------------------------------
    4. Actions & Toasts
 ----------------------------------------------------------- */
-.rpc-actions-container {
+.apc-actions-container {
     position: sticky;
     bottom: 24px;
-    background: var(--rpc-bg);
+    background: var(--apc-bg);
     padding: 20px;
-    border-radius: var(--rpc-radius);
-    box-shadow: var(--rpc-shadow-lg);
-    border: 1px solid var(--rpc-gray-200);
+    border-radius: var(--apc-radius);
+    box-shadow: var(--apc-shadow-lg);
+    border: 1px solid var(--apc-gray-200);
     display: flex;
     flex-direction: column;
     gap: 16px;
     z-index: 50;
 }
 
-.rpc-button {
+.apc-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,7 +245,7 @@
     width: 100%;
     padding: 14px 24px;
     border: none;
-    border-radius: var(--rpc-radius);
+    border-radius: var(--apc-radius);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -253,90 +253,90 @@
     box-sizing: border-box;
 }
 
-.rpc-primary {
-    background: var(--rpc-primary);
+.apc-primary {
+    background: var(--apc-primary);
     color: #fff;
     box-shadow: 0 4px 6px rgba(90, 103, 216, 0.25);
 }
 
-.rpc-primary:hover:not(:disabled) {
-    background: var(--rpc-primary-hover);
+.apc-primary:hover:not(:disabled) {
+    background: var(--apc-primary-hover);
     transform: translateY(-1px);
     box-shadow: 0 6px 8px rgba(90, 103, 216, 0.3);
 }
 
-.rpc-primary:disabled {
+.apc-primary:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
 }
 
-.rpc-secondary-actions {
+.apc-secondary-actions {
     display: flex;
     gap: 12px;
 }
 
-.rpc-secondary-actions .rpc-button {
+.apc-secondary-actions .apc-button {
     padding: 10px 16px;
     font-size: 14px;
 }
 
-.rpc-success {
-    background: var(--rpc-success);
+.apc-success {
+    background: var(--apc-success);
     color: #fff;
 }
 
-.rpc-success:hover {
-    background: var(--rpc-success-hover);
+.apc-success:hover {
+    background: var(--apc-success-hover);
 }
 
-.rpc-outline {
+.apc-outline {
     background: transparent;
-    border: 1px solid var(--rpc-gray-300);
-    color: var(--rpc-gray-700);
+    border: 1px solid var(--apc-gray-300);
+    color: var(--apc-gray-700);
 }
 
-.rpc-outline:hover {
-    background: var(--rpc-gray-50);
-    color: var(--rpc-text);
+.apc-outline:hover {
+    background: var(--apc-gray-50);
+    color: var(--apc-text);
 }
 
-.rpc-dark {
-    background: var(--rpc-dark);
+.apc-dark {
+    background: var(--apc-dark);
     color: #fff;
 }
 
-.rpc-dark:hover {
-    background: var(--rpc-dark-hover);
+.apc-dark:hover {
+    background: var(--apc-dark-hover);
 }
 
-.rpc-toast-message {
+.apc-toast-message {
     position: fixed;
     bottom: 32px;
     right: 32px;
     padding: 16px 24px;
-    border-radius: var(--rpc-radius);
+    border-radius: var(--apc-radius);
     font-weight: 500;
     font-size: 14px;
-    box-shadow: var(--rpc-shadow-lg);
+    box-shadow: var(--apc-shadow-lg);
     z-index: 9999;
     display: none;
     animation: rpcSlideUp 0.3s ease forwards;
 }
 
-.rpc-toast-message.rpc-success {
+.apc-toast-message.apc-success {
     background-color: #ecfdf5;
     color: #065f46;
     border: 1px solid #a7f3d0;
-    border-left: 4px solid var(--rpc-success);
+    border-left: 4px solid var(--apc-success);
 }
 
-.rpc-toast-message.rpc-error {
+.apc-toast-message.apc-error {
     background-color: #fef2f2;
     color: #991b1b;
     border: 1px solid #fecaca;
-    border-left: 4px solid var(--rpc-danger);
+    border-left: 4px solid var(--apc-danger);
 }
 
 @keyframes rpcSlideUp {
@@ -351,7 +351,7 @@
     }
 }
 
-.rpc-spin {
+.apc-spin {
     animation: rpcSpin 1s linear infinite;
     width: 18px;
     height: 18px;
@@ -367,15 +367,15 @@
     }
 }
 
-.rpc-footer {
+.apc-footer {
     text-align: center;
     font-size: 12px;
-    color: var(--rpc-gray-700);
+    color: var(--apc-gray-700);
     margin-top: auto;
 }
 
-.rpc-footer a {
-    color: var(--rpc-primary);
+.apc-footer a {
+    color: var(--apc-primary);
     text-decoration: none;
     font-weight: 600;
 }
@@ -383,29 +383,29 @@
 /* -----------------------------------------------------------
    5. Preview Container
 ----------------------------------------------------------- */
-.rpc-preview-pane {
+.apc-preview-pane {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
 }
 
-.rpc-preview-header {
+.apc-preview-header {
     margin-bottom: 16px;
     padding-left: 8px;
 }
 
-.rpc-preview-header h3 {
+.apc-preview-header h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
-    color: var(--rpc-text);
+    color: var(--apc-text);
 }
 
-.rpc-preview-container-box {
-    background: var(--rpc-gray-50);
-    border: 1px solid var(--rpc-gray-200);
-    border-radius: var(--rpc-radius);
+.apc-preview-container-box {
+    background: var(--apc-gray-50);
+    border: 1px solid var(--apc-gray-200);
+    border-radius: var(--apc-radius);
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
     padding: 32px;
     display: flex;
@@ -415,12 +415,12 @@
     min-height: 500px;
 }
 
-.rpc-preview-wrapper {
+.apc-preview-wrapper {
     position: relative;
     width: 1080px;
     height: 1350px;
     overflow: hidden;
-    box-shadow: var(--rpc-shadow-lg);
+    box-shadow: var(--apc-shadow-lg);
     background-color: #fff;
     transform-origin: top left;
     margin: 0 auto;
@@ -429,7 +429,7 @@
     transition: width 0.1s ease, height 0.1s ease;
 }
 
-.rpc-preview-wrapper.fade-in {
+.apc-preview-wrapper.fade-in {
     animation: rpcFadeIn 0.5s ease;
 }
 
@@ -448,7 +448,7 @@
 /* -----------------------------------------------------------
    6. INNER CARD (DO NOT MODIFY POSITIONS)
 ----------------------------------------------------------- */
-.rpc-card {
+.apc-card {
     position: relative;
     width: 1080px;
     height: 1350px;
@@ -456,7 +456,7 @@
     transform-origin: top left;
 }
 
-#rpc-bg {
+#apc-bg {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -467,7 +467,7 @@
     pointer-events: none;
 }
 
-.rpc-date-pill {
+.apc-date-pill {
     display: none;
     position: absolute;
     z-index: 10;
@@ -482,7 +482,7 @@
     background: transparent;
 }
 
-.rpc-photo-container {
+.apc-photo-container {
     display: none;
     position: absolute;
     z-index: 1;
@@ -493,7 +493,7 @@
     background: transparent;
 }
 
-#rpc-photo {
+#apc-photo {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
@@ -505,11 +505,11 @@
     cursor: grab;
 }
 
-#rpc-photo:active {
+#apc-photo:active {
     cursor: grabbing;
 }
 
-.rpc-title-area {
+.apc-title-area {
     position: absolute;
     z-index: 10;
     top: 950px;
@@ -523,7 +523,7 @@
     align-items: center;
 }
 
-.rpc-title-line {
+.apc-title-line {
     display: inline;
     color: #ffffff;
     font-size: 75px;
@@ -531,8 +531,8 @@
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
-.rpc-highlight {
-    background-color: var(--rpc-danger);
+.apc-highlight {
+    background-color: var(--apc-danger);
     color: #ffffff;
     font-weight: 700;
     padding: 2px 10px;
@@ -542,17 +542,17 @@
     text-shadow: none;
 }
 
-.rpc-font-bn .rpc-date-pill,
-.rpc-font-bn .rpc-title-line {
+.apc-font-bn .apc-date-pill,
+.apc-font-bn .apc-title-line {
     font-family: 'RTVBangla', 'Noto Serif Bengali', serif;
 }
 
-.rpc-font-en .rpc-date-pill,
-.rpc-font-en .rpc-title-line {
+.apc-font-en .apc-date-pill,
+.apc-font-en .apc-title-line {
     font-family: 'RTVEnglish', 'Gandhi Serif', serif;
 }
 
-.rpc-qr {
+.apc-qr {
     display: none;
     position: absolute;
     z-index: 12;
@@ -567,27 +567,27 @@
     overflow: hidden;
 }
 
-.rpc-qr canvas,
-.rpc-qr img {
+.apc-qr canvas,
+.apc-qr img {
     width: 100% !important;
     height: 100% !important;
     display: block;
 }
 
-.rpc-draggable {
+.apc-draggable {
     cursor: grab;
     user-select: none;
     border: 1px dashed transparent;
     transition: all 0.2s;
 }
 
-.rpc-draggable:hover {
+.apc-draggable:hover {
     border: 1px dashed rgba(255, 255, 255, 0.6);
     background: rgba(0, 0, 0, 0.15);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.rpc-draggable:active {
+.apc-draggable:active {
     cursor: grabbing;
     background: rgba(0, 0, 0, 0.25);
 }
@@ -596,34 +596,34 @@
    7. Mobile Responsive
 ----------------------------------------------------------- */
 @media (max-width: 992px) {
-    .rpc-wrapper {
+    .apc-wrapper {
         flex-direction: column;
         padding: 0 16px;
         margin: 16px auto 100px auto;
     }
 
-    .rpc-controls {
+    .apc-controls {
         width: 100%;
         order: 2;
     }
 
-    .rpc-preview-pane {
+    .apc-preview-pane {
         width: 100%;
         order: 1;
     }
 
-    .rpc-preview-container-box {
+    .apc-preview-container-box {
         padding: 16px;
         min-height: auto;
     }
 
-    .rpc-actions-container {
+    .apc-actions-container {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
         border-radius: 0;
-        border-top: 1px solid var(--rpc-gray-200);
+        border-top: 1px solid var(--apc-gray-200);
         margin: 0;
         padding: 16px;
         background: rgba(255, 255, 255, 0.95);
@@ -631,15 +631,15 @@
         box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
     }
 
-    .rpc-secondary-actions {
+    .apc-secondary-actions {
         justify-content: space-between;
     }
 
-    .rpc-button {
+    .apc-button {
         padding: 16px;
     }
 
-    .rpc-toast-message {
+    .apc-toast-message {
         bottom: 120px;
         right: 16px;
         left: 16px;
