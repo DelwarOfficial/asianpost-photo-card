@@ -532,7 +532,7 @@
 }
 
 .apc-highlight {
-    background-color: var(--apc-danger);
+    background-color: #a51f24;
     color: #ffffff;
     font-weight: 700;
     padding: 2px 10px;
