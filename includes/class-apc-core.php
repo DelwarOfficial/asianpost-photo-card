@@ -25,6 +25,7 @@ class Asian_Post_Photo_Card_Core
         add_action('init', array($this, 'load_textdomain'));
         add_action('admin_notices', array($this, 'display_activation_notice'));
         register_activation_hook(APC_PLUGIN_FILE, array($this, 'activate_plugin'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
     }
 
     public function activate_plugin()

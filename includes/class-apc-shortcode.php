@@ -12,8 +12,7 @@ class Asian_Post_Photo_Card_Shortcode
 
     public static function render_shortcode($atts = array())
     {
-        // Enqueue necessary CSS and JS only when this shortcode is actually rendered
-        Asian_Post_Photo_Card_Core::get_instance()->enqueue_assets();
+        // Enqueueing is now handled via wp_enqueue_scripts in class-apc-core.php
         $default_template = 'Default-Template-1080x1350.png';
         $files = glob(APC_PATH . 'assets/templates/*.{png,jpg,jpeg}', GLOB_BRACE);
         if (!empty($files)) {
